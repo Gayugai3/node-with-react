@@ -1,13 +1,12 @@
 const express = require("express");
 const app = express();
-
+const dotenv = require("dotenv").config();
 const mongodb = require("mongodb");
 const mongoclient = mongodb.MongoClient;
 //const URL = "mongodb://localhost:27017";
-const URL =
-  "mongodb+srv://admin_portal:nT0l9Vkciq42HET7@cluster0.0l2tren.mongodb.net/b40Wd2_tamil";
+const URL = process.env.db;
 
-const SECRET = "xgze7mcp85oy9kai062qd41l3vbrfhtw";
+const SECRET = process.env.JWT_SECRET_KEY;
 
 const bcrypt = require("bcryptjs");
 
@@ -297,4 +296,4 @@ app.post("/login", async (req, res) => {
   }
 });
 
-app.listen(8000);
+app.listen(process.env.PORT || 8000);
